@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 // 🅱️ Bootstrap components
 import Card, { CardHeader, CardLabel, CardTitle, CardActions, CardBody } from './bootstrap/Card';
 import Button from './bootstrap/Button';
-import Icon from './icon/Icon';
 
 // 🧱 Components
 import Panel from './Panel';
@@ -25,7 +24,7 @@ const Table = ({ data: { people, setPeople } }) => {
         <div className="container col-xl-7 my-5">
             <Card className='shadow-3d-info'>
                 <CardHeader borderSize={1}>
-                    <CardLabel icon='People'>
+                    <CardLabel icon='People' color='info'>
                         <CardTitle tag='h4' className='h5 mx-2'>
                             Personnes
                         </CardTitle>
@@ -48,22 +47,14 @@ const Table = ({ data: { people, setPeople } }) => {
                                 <tr>
                                     <th></th>
                                     <th>ID</th>
-                                    <th
-                                        //onClick={() => requestSort('date')}
-                                        className='cursor-pointer text-decoration-underline'>
-                                        Nom{' '}
-                                        <Icon
-                                            size='lg'
-                                            icon='KeyboardArrowDown'
-                                            />
-                                    </th>
+                                    <th>Nom</th>
                                     <th>Prénom</th>
                                     <th>Adresse e-mail</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                            {people.map((item) => (
+                            {people.sort((a, b) => a?.last_name.localeCompare(b?.last_name)).map((item) => (
                                 <tr key={`person-${item?.id}`}>
                                     <td className='align-top'>
                                         <Button

@@ -1,5 +1,5 @@
 // 🌌 React
-import { useState, useEffect, useContext } from 'react'
+import { useEffect, useContext } from 'react'
 
 // 🅱️ Bootstrap components
 import OffCanvas, {
@@ -8,9 +8,7 @@ import OffCanvas, {
 	OffCanvasTitle 
 } from './bootstrap/OffCanvas';
 import Button from './bootstrap/Button';
-import Icon from './icon/Icon';
 import Input from './bootstrap/forms/Input';
-import InputGroup, { InputGroupText } from './bootstrap/forms/InputGroup';
 import FormGroup from './bootstrap/forms/FormGroup';
 
 // 📑 Formik

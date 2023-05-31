@@ -3,7 +3,7 @@ const data = [
         id: 1,
         last_name: "Lépinay",
         first_name: "Nicolas",
-        email_address: "nicolas.lepinay@gmail.com"
+        email_address: "nicolas.lepinay@outlook.com"
     },
     {
         id: 2,
@@ -40,6 +40,18 @@ const data = [
         last_name: "Lefebvre",
         first_name: "Agathe",
         email_address: "agathe.lefebvre@gmail.com"
+    },
+    {
+        id: 8,
+        last_name: "Albertini",
+        first_name: "Julie",
+        email_address: "julie.albertini@gmail.com"
+    },
+    {
+        id: 9,
+        last_name: "Zakrzewski",
+        first_name: "Marylou",
+        email_address: "marylou.zakrzewski@gmail.com"
     }
 ]
 

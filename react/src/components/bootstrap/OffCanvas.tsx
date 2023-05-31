@@ -11,11 +11,8 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import Portal from '../../layout/Portal/Portal';
 import TagWrapper from '../TagWrapper';
 import useEventListener from '../../hooks/useEventListener';
-import ThemeContext from '../../contexts/themeContext';
-import useDeviceScreen from '../../hooks/useDeviceScreen';
 import { TOffCanvasPlacement } from '../../type/offCanvas-type';
 
 interface IOffCanvasTitleProps extends HTMLAttributes<HTMLElement> {
@@ -115,6 +112,7 @@ OffCanvasBody.propTypes = {
 OffCanvasBody.defaultProps = {
 	className: undefined,
 	tag: 'div',
+	onSubmit: undefined,
 };
 
 interface IOffCanvasProps extends HTMLAttributes<HTMLElement> {
@@ -159,14 +157,6 @@ const OffCanvas: FC<IOffCanvasProps> = ({
 	};
 
 	// @ts-ignore
-	const { setRightPanel } = useContext(ThemeContext);
-	const deviceScreen = useDeviceScreen();
-
-	useLayoutEffect(() => {
-		// @ts-ignore
-		setRightPanel(isRightPanel && deviceScreen?.width > 1200 && isOpen);
-	});
-
 	const ref = useRef(null);
 
 	// Disable Body Scroll
@@ -199,8 +189,7 @@ const OffCanvas: FC<IOffCanvasProps> = ({
 	const MotionTagWrapper = motion[Tag];
 
 	return (
-		<Portal>
-			<AnimatePresence exitBeforeEnter>
+			<AnimatePresence mode='wait'>
 				{isOpen && (
 					<>
 						<MotionTagWrapper
@@ -219,7 +208,7 @@ const OffCanvas: FC<IOffCanvasProps> = ({
 									'offcanvas-modal-style': isModalStyle,
 									'offcanvas-right-panel':
 										// @ts-ignore
-										isRightPanel && deviceScreen?.width > 1200,
+										isRightPanel,
 								},
 							)}
 							tabIndex='-1'
@@ -237,7 +226,6 @@ const OffCanvas: FC<IOffCanvasProps> = ({
 					</>
 				)}
 			</AnimatePresence>
-		</Portal>
 	);
 };
 OffCanvas.propTypes = {
@@ -262,6 +250,8 @@ OffCanvas.defaultProps = {
 	isModalStyle: false,
 	isRightPanel: false,
 	tag: 'div',
+	onSubmit: undefined,
+	noValidate: undefined,
 };
 
 export default OffCanvas;

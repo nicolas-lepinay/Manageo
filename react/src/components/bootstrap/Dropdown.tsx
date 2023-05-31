@@ -17,6 +17,7 @@ import classNames from 'classnames';
 // @ts-ignore
 import useEventOutside from '@omtanke/react-use-event-outside';
 import useDarkMode from '../../hooks/useDarkMode';
+// eslint-disable-next-line import/no-cycle
 import { IButtonProps } from './Button';
 import { TDropdownDirection } from '../../type/dropdown-type';
 
@@ -25,7 +26,6 @@ interface IDropdownToggleProps {
 	isOpen?: boolean;
 	setIsOpen?: (value: ((prevState: boolean) => boolean) | boolean | null) => void | null;
 	hasIcon?: boolean;
-	isStatic?: boolean;
 }
 export const DropdownToggle: FC<IDropdownToggleProps> = ({
 	children,
@@ -351,7 +351,7 @@ const Dropdown: FC<IDropdownProps> = ({
 
 	return (
 		<Manager>
-			{/*@ts-ignore*/}
+			{/* @ts-ignore */}
 			<Tag
 				ref={dropdownRef}
 				className={classNames(

@@ -21,6 +21,8 @@
 		)
 	);
 
+	overflow: auto;
+
 	&-button {
 		@include dark-mode {
 			background-color: $dark-accordion-button-bg;

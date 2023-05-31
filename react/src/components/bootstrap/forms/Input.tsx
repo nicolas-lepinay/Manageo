@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { NumericFormat } from 'react-number-format';
 import InputMask from 'react-input-mask';
 import classNames from 'classnames';
-import Portal from '../../../layout/Portal/Portal';
 import Validation from './Validation';
 import { TInputTypes } from '../../../type/input-type';
 
@@ -158,13 +157,11 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
 		const MASK_PROPS = { mask };
 
 		const LIST = list && (
-			<Portal>
 				<datalist id={`${id}-list`}>
 					{list.map((option) => (
 						<option key={option} aria-labelledby={option} value={option} />
 					))}
 				</datalist>
-			</Portal>
 		);
 
 		const VALIDATION = isValidMessage && (
@@ -359,6 +356,9 @@ Input.defaultProps = {
 	onSelect: undefined,
 	mask: undefined,
 	format: undefined,
+	maskChar: undefined,
+	formatChars: undefined,
+	accept: undefined,
 };
 
 export default Input;

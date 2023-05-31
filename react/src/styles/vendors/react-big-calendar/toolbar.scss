@@ -99,11 +99,11 @@ $active-border: color.adjust($btn-border, $lightness: -12%);
 	}
 
 	button + button {
-		margin-left: $btn-border-width * -1;
+		margin-left: calc($btn-border-width * -1);
 	}
 
 	.rbc-rtl & button + button {
-		margin-right: $btn-border-width * -1;
+		margin-right: calc($btn-border-width * -1);
 		margin-left: 0;
 	}
 

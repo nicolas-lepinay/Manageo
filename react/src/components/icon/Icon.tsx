@@ -1,7 +1,6 @@
 import React, { forwardRef, HTMLAttributes, memo, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import * as SvgIcon from './svg-icons';
 import * as Material from './material-icons';
 import pascalcase from 'pascalcase';
 import { TColor } from '../../type/color-type';
@@ -34,10 +33,7 @@ const Icon = forwardRef<HTMLSpanElement, IIconProps>(
 	({ icon, className, color, size, forceFamily, ...props }, ref) => {
 		const IconName = pascalcase(icon);
 
-		// @ts-ignore
-		// eslint-disable-next-line import/namespace
-		const SvgIconWrapper = SvgIcon[IconName];
-		// @ts-ignore
+        // @ts-ignore
 		// eslint-disable-next-line import/namespace
 		const MaterialWrapper = Material[IconName];
 
@@ -50,17 +46,6 @@ const Icon = forwardRef<HTMLSpanElement, IIconProps>(
 		const isForceCustom = forceFamily === 'custom';
 		const isForceMaterial = forceFamily === 'material';
 
-		if (isForceCustom || (!isForceMaterial && typeof SvgIconWrapper === 'function')) {
-			return (
-				<RefWrapper ref={ref}>
-					<SvgIconWrapper
-						data-name={`SvgIcon--${IconName}`}
-						className={classNames('svg-icon--custom', ClassName)}
-						{...props}
-					/>
-				</RefWrapper>
-			);
-		}
 		if (isForceMaterial || (!isForceCustom && typeof MaterialWrapper === 'function')) {
 			return (
 				<RefWrapper ref={ref}>

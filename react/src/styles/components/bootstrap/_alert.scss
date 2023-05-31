@@ -2,66 +2,37 @@
 //  Alert
 //
 
-@use 'sass:math';
-@use 'sass:color';
-
-// Bootstrap Extension
-@mixin alert-variations(
-	$variation,
-	$bg-scale: $alert-bg-scale,
-	$border-scale: $alert-border-scale,
-	$color-scale: $alert-color-scale
-) {
-	@each $state, $value in $theme-colors {
-		$background: shift-color($value, $bg-scale);
-		$border: shift-color($value, $border-scale);
-		$color: shift-color($value, $color-scale);
-
-		$dark-background: if(
-			$variation == light,
-			rgba-to-rgb(rgba($value, $dark-alert-bg-opacity-light), $dark),
-			if(
-				$variation == outline,
-				rgba-to-rgb(rgba($value, $dark-alert-bg-opacity-outline), $dark),
-				shift-color($value, $bg-scale)
-			)
-		);
-		$dark-border: if(
-			$variation == light,
-			rgba($value, $dark-alert-bg-opacity-light),
-			shift-color($value, $border-scale)
-		);
-		$dark-color: shift-color($value, $color-scale * -1);
-
-		@if contrast-ratio($background, $color) < $min-contrast-ratio {
-			$color: color.mix($value, color-contrast($background), math.abs($color-scale));
-		}
-		&#{&}-#{$variation}-#{$state} {
+.alert {
+	// Generate contextual modifier classes for colorizing the alert
+	@each $state in map-keys($theme-colors) {
+		&.alert-#{$state} {
+			--#{$prefix}alert-bg: var(--#{$prefix}#{$state});
 			@include dark-mode {
-				@include alert-variant($dark-background, $dark-border, $dark-color);
+				--#{$prefix}alert-bg: var(--#{$prefix}#{$state}-border-subtle);
+				--#{$prefix}alert-border-color: var(--#{$prefix}#{$state});
 			}
-			@include alert-variant($background, $border, $color);
 		}
 	}
-}
-// Bootstrap Extension - END
 
-.alert {
 	// Light
-	@include alert-variations(
-		light,
-		$alert-bg-scale-light,
-		$alert-border-scale-light,
-		$alert-color-scale-light
-	);
+	@each $state in map-keys($theme-colors) {
+		&.alert-light-#{$state} {
+			--#{$prefix}alert-color: var(--#{$prefix}#{$state}-text-emphasis);
+			--#{$prefix}alert-bg: var(--#{$prefix}#{$state}-bg-subtle);
+			--#{$prefix}alert-border-color: var(--#{$prefix}#{$state}-border-subtle);
+			--#{$prefix}alert-link-color: var(--#{$prefix}#{$state}-text-emphasis);
+		}
+	}
 
 	//  Outline
-	@include alert-variations(
-		outline,
-		$alert-bg-scale-outline,
-		$alert-border-scale-outline,
-		$alert-color-scale-outline
-	);
+	@each $state in map-keys($theme-colors) {
+		&.alert-outline-#{$state} {
+			--#{$prefix}alert-color: var(--#{$prefix}#{$state}-text-emphasis);
+			--#{$prefix}alert-bg: var(--#{$prefix}-transparent);
+			--#{$prefix}alert-border-color: var(--#{$prefix}#{$state}-border-subtle);
+			--#{$prefix}alert-link-color: var(--#{$prefix}#{$state}-text-emphasis);
+		}
+	}
 
 	display: flex;
 	flex-wrap: wrap;

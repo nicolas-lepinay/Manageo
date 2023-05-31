@@ -1,19 +1,5 @@
-// import React, { useContext, useEffect, useLayoutEffect, useRef } from 'react';
-// import { ThemeProvider } from 'react-jss';
-// import { useFullscreen } from 'react-use';
-// import { TourProvider } from '@reactour/tour';
-// import ThemeContext from '../contexts/themeContext';
-// import Wrapper from '../layout/Wrapper/Wrapper';
-// import Portal from '../layout/Portal/Portal';
-// import { Toast, ToastContainer } from '../components/bootstrap/Toasts';
-// import useDarkMode from '../hooks/useDarkMode';
-// import COLORS from '../common/data/enumColors';
-// import { getOS } from '../helpers/helpers';
-// import steps, { styles } from '../steps';
-// import AsideRoutes from '../layout/Aside/AsideRoutes';
-
 // 🌌 React
-import { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 
 // 🧱 Components
 import Table from '../components/Table';

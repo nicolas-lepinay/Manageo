@@ -23,13 +23,14 @@ interface IInputGroupTextProps extends HTMLAttributes<HTMLElement> {
 	htmlFor?: string;
 }
 export const InputGroupText = forwardRef<HTMLDivElement, IInputGroupTextProps>(
-	({ tag, id, className, children, ...props }, ref) => {
+	({ tag, id, className, children, htmlFor, ...props }, ref) => {
 		return (
 			<TagWrapper
 				tag={tag}
 				ref={ref}
 				id={id}
 				className={classNames('input-group-text', className)}
+				htmlFor={htmlFor}
 				// eslint-disable-next-line react/jsx-props-no-spreading
 				{...props}>
 				{isValidElement(children) && children?.props?.type
@@ -51,6 +52,7 @@ InputGroupText.defaultProps = {
 	tag: 'span',
 	id: undefined,
 	className: undefined,
+	htmlFor: undefined,
 };
 
 type TInputGroupChildren =
@@ -69,8 +71,8 @@ const InputGroup = forwardRef<HTMLDivElement, IInputGroupProps>(
 	({ id, className, children, isWrap, size, ...props }, ref) => {
 		let IS_VALID = false;
 		let IS_TOUCHED = false;
-		let INVALID_FEEDBACK = undefined;
-		let VALID_FEEDBACK = undefined;
+		let INVALID_FEEDBACK;
+		let VALID_FEEDBACK;
 		let IS_TOOLTIP_FEEDBACK = false;
 
 		const validClass = (child: TInputGroupChildren) => {

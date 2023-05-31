@@ -7,6 +7,7 @@ import React, {
 	ReactElement,
 	memo,
 	HTMLAttributes,
+	CSSProperties,
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -15,7 +16,6 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import TagWrapper from '../TagWrapper';
 import Icon from '../icon/Icon';
 import Button from './Button';
-import PrismCode from '../extras/PrismCode';
 import { TColor } from '../../type/color-type';
 import { TIcons } from '../../type/icons-type';
 import { TCardBorderSize, TCardShadow, TCardSize } from '../../type/card-type';
@@ -276,22 +276,12 @@ CardBody.defaultProps = {
 interface ICardCodeViewProps {
 	children: string;
 	language?: string;
-	customStyle?: object;
+	customStyle?: CSSProperties;
 	isPrismJs?: boolean;
 	className?: string;
 }
 export const CardCodeView: FC<ICardCodeViewProps> = memo(
 	({ children, language, customStyle, isPrismJs, className }) => {
-		if (isPrismJs) {
-			return (
-				<PrismCode
-					code={children}
-					language={language}
-					className={classNames('my-0', className)}
-					style={customStyle}
-				/>
-			);
-		}
 		return (
 			<SyntaxHighlighter
 				language={language}
@@ -317,12 +307,14 @@ CardCodeView.propTypes = {
 	language: PropTypes.string,
 	isPrismJs: PropTypes.bool,
 	className: PropTypes.string,
+	// eslint-disable-next-line react/forbid-prop-types
 	customStyle: PropTypes.object,
 };
 CardCodeView.defaultProps = {
 	language: 'jsx',
 	isPrismJs: true,
 	className: undefined,
+	customStyle: undefined,
 };
 
 interface ICardFooterLeftProps extends HTMLAttributes<HTMLElement> {
@@ -616,6 +608,8 @@ Card.defaultProps = {
 	tabBodyClassName: undefined,
 	stretch: false,
 	isCompact: false,
+	onSubmit: undefined,
+	noValidate: undefined,
 };
 
 export default Card;

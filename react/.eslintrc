@@ -5,6 +5,7 @@
 	},
 	"extends": [
 		"plugin:react/recommended",
+		"airbnb",
 		"airbnb-typescript",
 		"plugin:eslint-comments/recommended",
 		"plugin:import/errors",
@@ -25,12 +26,16 @@
 		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
 		"no-param-reassign": "off",
 		"no-empty": "warn",
-		"import/no-extraneous-dependencies": "warn",
+		"import/no-extraneous-dependencies": ["warn", { "peerDependencies": false }],
 		"react/jsx-props-no-spreading": "warn",
 		"react/no-unescaped-entities": ["error", { "forbid": [">", "}"] }],
 		"jsx-a11y/label-has-associated-control": [
-			"warn",
+			2,
 			{
+				"labelComponents": ["Label"],
+				"labelAttributes": ["htmlFor"],
+				"controlComponents": ["Input"],
+				"assert": "htmlFor",
 				"depth": 3
 			}
 		],
