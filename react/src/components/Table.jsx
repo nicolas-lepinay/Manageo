@@ -24,7 +24,7 @@ const Table = ({ data: { people, setPeople } }) => {
         <div className="container col-xl-7 my-5">
             <Card className='shadow-3d-info'>
                 <CardHeader borderSize={1}>
-                    <CardLabel icon='People' color='info'>
+                    <CardLabel icon='People' iconColor='info'>
                         <CardTitle tag='h4' className='h5 mx-2'>
                             Personnes
                         </CardTitle>
