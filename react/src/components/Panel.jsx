@@ -43,6 +43,7 @@ const Panel = ( { item, togglePanel, setTogglePanel }) => {
         }
     });
 
+    // Update selected person :
     const handleUpdate = async (values) => {
         const updatedPeople = people.map(person => {
             if(person.id === values.id)
@@ -55,12 +56,14 @@ const Panel = ( { item, togglePanel, setTogglePanel }) => {
         localStorage.setItem('manageo_users_data', JSON.stringify(updatedPeople));
     }
 
+    // Delete selected person :
     const handleDelete = async (id) => {
         const updatedPeople = people.filter(person => person.id !== id)
         setPeople(updatedPeople);
         localStorage.setItem('manageo_users_data', JSON.stringify(updatedPeople));
     }
 
+    // Add a new person to the list :
     const handlePost = async (values) => {
         const updatedPeople = [...people, values];
         setPeople(updatedPeople);
